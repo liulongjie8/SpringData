@@ -25,7 +25,7 @@ public class SpringDataTest {
     public void testFindByName() {
         Student student = repository.findByName("zhangsan");
         Assert.assertNotNull(student);
-        System.out.println("id:"   + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+        System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
     }
 
     @After
