@@ -18,7 +18,7 @@ public class SpringDataTest {
 
     private StudentRepository repository = null;
 
-    private Student2Respository  student2Respository = null;
+    private Student2Respository student2Respository = null;
 
     @Before
     public void init() {

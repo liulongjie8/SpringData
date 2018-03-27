@@ -14,7 +14,7 @@ public class Student {
 
     private String name;
 
-    private Integer age;
+    private String age;
 
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class Student {
     }
 
     @Column(nullable = false)
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -40,7 +40,15 @@ public class Student {
         this.name = name;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
+    }
+
+    public Student(String name, String age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Student() {
     }
 }
