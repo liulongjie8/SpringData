@@ -42,7 +42,18 @@ public class StudentPagingAndSortingRepositoryServiceTest {
         for(Student student : students){
             System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
         }
+    }
 
+    @Test
+    public void testPageSort(){
+        Page<Student> pages = service.pageSort(5,0);
+        System.out.println(pages.getTotalPages());
+        System.out.println(pages.getSize());
+        System.out.println(pages.getTotalElements());
+        List<Student> students = pages.getContent();
+        for(Student student : students){
+            System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+        }
     }
 
 }
