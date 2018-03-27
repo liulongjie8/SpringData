@@ -42,7 +42,7 @@ public class StudentJpaSpecificationExecutorTest  {
         Specification<Student> specification = new Specification<Student>() {
             @Override
             public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                Path path = root.get("name");
+                Path<String> path = root.get("name");
                 Predicate p = cb.equal(path,"zhangwo");
                 return p;
             }
@@ -56,6 +56,27 @@ public class StudentJpaSpecificationExecutorTest  {
         }
     }
 
+    @Test
+    public void testPageSort2(){
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "id");
+        Pageable page = new PageRequest(0,5,new Sort(order));
 
+        Specification<Student> specification = new Specification<Student>() {
+            @Override
+            public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                Path<String> name = root.get("name");
+                Path<Integer> id = root.get("id");
+                query.where(cb.ge(id,200), cb.like(name,"zhang"));
+                return null;
+            }
+        };
+
+        Page<Student> pages = service.findAll( specification, page);
+
+        List<Student> students = pages.getContent();
+        for(Student student : students){
+            System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+        }
+    }
 
 }
