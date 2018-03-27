@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class SpringDataTest {
 
     private ApplicationContext ctx = null;
@@ -38,6 +40,46 @@ public class SpringDataTest {
         Assert.assertNotNull(student);
         System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
     }
+
+    @Test
+    public void testFindByMaxId(){
+        Student student = student2Respository.findByMaxId();
+        Assert.assertNotNull(student);
+        System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+    }
+
+    @Test
+    public void testFindList(){
+       List<Student> students = student2Respository.findList("zhangsan","1");
+        for(Student student: students){
+            System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+        }
+
+    }
+
+    @Test
+    public void testFindList2(){
+        List<Student> students = student2Respository.findList2("zhangsan","1");
+        for(Student student: students){
+            System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+        }
+    }
+
+
+    @Test
+    public void testFindByLikeName(){
+        Student student = student2Respository.findByLikeName("zhang");
+        Assert.assertNotNull(student);
+        System.out.println("id:" + student.getId() + ", name:" + student.getName() + ", age:" + student.getAge());
+    }
+
+    @Test
+    public void testGetCount(){
+        Integer count = student2Respository.getCount();
+        Assert.assertNotNull(count);
+        System.out.println(count);
+    }
+
 
     @After
     public void destory() {
